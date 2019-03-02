@@ -17,26 +17,36 @@ public class hw2
 			Scanner input = new Scanner(System.in);
 			int id, leagueTotal = 0, loses, wins, gp, gr;
 			double pct; 
-			System.out.print("Please enter an ID number: ");
+			System.out.print("Please enter an ID number from 1-8: ");
 			id = input.nextInt(); 
-			  
+
+			
 			while (id > 0)
 			{
+				
+				if (id >= 9)			 // only a ID number of 8 or less can be used; loop restarts if greater than 8
+				  {
+					System.out.println("Invalid number. Number must be between 1 and 8."); 
+				  }
+				else {				     // program continues if previous condition not met
+					
 				System.out.print("Please enter number of wins: ");
-				wins = input.nextInt(); // number of team wins
+				wins = input.nextInt();  // number of team wins
 				System.out.print("Please enter number of loses: "); 
 				loses = input.nextInt(); // number of team losses
-				gp = (wins + loses); 	//	formula for total games played
-				gr = (25 - gp);			// 	formula for total games remaining
+				gp = (wins + loses);   	 //	formula for total games played
+				gr = (25 - gp);			 // formula for total games remaining
 				pct = (double)wins / gp; // formula for winning percentage; temporally converts wins integer to a double
+				
+				if (gp > 25)			 // continue will skip to end of loop and restart
+				{
+					System.out.println("Games played cannot exceed 25. Please enter another value."); continue;
+				}
 				System.out.println("ID     W     L     AVG");   
-				System.out.printf("%d     %d    %d     %.4f" , id, wins, loses, pct); 
+				System.out.printf("%d      %d    %d    %.4f" , id, wins, loses, pct); 
 				System.out.println("\n");
-					if (gp > 25)	// continue will skip to end of loop and restart
-						{
-							System.out.println("Games played cannot exceed 25. Please enter another value."); continue;
-						}
-					if(gr == 0) 	// statement will be displayed when all games have been played
+					
+					if(gr == 0) 		// statement will be displayed when all games have been played
 						{
 							System.out.print(gp + " games played.");
 							System.out.println(" The season is over.\n");
@@ -46,7 +56,7 @@ public class hw2
 								System.out.print(gp + " game(s) played. ");
 								System.out.println(gr + " game(s) remain in the season.\n");
 							}
-					if(gr >= wins)	//	statement determines if games remaining is greater than number won
+					if(gr >= wins)	    // statement determines if games remaining is greater than number won
 						{
 							System.out.println("The number of games remaining is greater than or equal to" + 
 										" the number won.");
@@ -56,7 +66,7 @@ public class hw2
 								System.out.println("The number of games remaining is less than or equal to" + 
 										" the number won.");
 							}
-					if(gr >= loses)	//	statement determines if games remaining is greater than number lost
+					if(gr >= loses)	   // statement determines if games remaining is greater than number lost
 						{
 							System.out.println("The number of games remaining is greater than or equal to" + 
 									" the number lost.");
@@ -66,15 +76,19 @@ public class hw2
 								System.out.println("The number of games remaining is not greater than the" +
 									" number lost.");
 							}
+				}
 				System.out.println("\nPlease enter another ID number. " +
 				"Enter zero to STOP");
-				leagueTotal++;		//	increments after loop is complete
+				leagueTotal++;		  //	increments after loop is complete
+				if (id >= 9)		  //	decrement so that teams are not added to final total if user enters ID greater than 9
+					leagueTotal--; 
 				id = input.nextInt();   
-				
-				if (id == 0)		//	message is displayed when user enters zero
+			
+				if (id == 0)	  	 //	message is displayed when user enters zero; end of program
 					{
 						System.out.println("There are a total of " + leagueTotal + " team(s) in the league."); 
 					}
 			} 
 		} 
 	}
+	
