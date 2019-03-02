@@ -17,10 +17,9 @@ public class hw2
 			Scanner input = new Scanner(System.in);
 			int id, leagueTotal = 0, loses, wins, gp, gr;
 			double pct; 
-			char letter; 
 			System.out.print("Please enter an ID number: ");
 			id = input.nextInt(); 
-			 
+			  
 			while (id > 0)
 			{
 				System.out.print("Please enter number of wins: ");
@@ -31,7 +30,7 @@ public class hw2
 				gr = (25 - gp);			// 	formula for total games remaining
 				pct = (double)wins / gp; // formula for winning percentage; temporally converts wins integer to a double
 				System.out.println("ID     W     L     AVG");   
-				System.out.printf(id + "     " + wins + "     " + loses + "     " + "%.4f" , pct); 
+				System.out.printf("%d     %d    %d     %.4f" , id, wins, loses, pct); 
 				System.out.println("\n");
 					if (gp > 25)	// continue will skip to end of loop and restart
 						{
