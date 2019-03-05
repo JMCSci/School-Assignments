@@ -12,7 +12,8 @@
  * 
  */ 
 
-import java.util.Scanner; 
+import java.util.Scanner;
+
 public class hw2 
 	{
 		public static void main(String[] args)
@@ -101,8 +102,8 @@ public class hw2
 						System.out.printf("Team " + "%d" + " has the best winning average of " + 
 								"%.4f", bestTeam, bestAvg);
 						System.out.println("\n\n----End of program----"); 
+						input.close();   // close Scanner
 					}
 				} 
 			} 
-		
 	}
