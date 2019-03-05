@@ -32,18 +32,18 @@ public class hw2
 				else {				      // program will continue if previous condition is met
 				System.out.print("Please enter number of wins: ");
 				wins = input.nextInt();   // number of team wins
-				System.out.print("Please enter number of losses: \n");
+				System.out.print("Please enter number of losses: ");
 				losses = input.nextInt(); // number of team losses
 				gp = (wins + losses);     // formula for total games played
 				gr = (25 - gp);			  // formula for total games remaining
 				pct = (double)wins / gp;  // formula for winning percentage; temporally converts wins integer to a double
 				
 				if (gp > 25) {			  // will skip to end of loop and restart if games played greater than 25
-					System.out.println("Games played cannot exceed 25. Please enter another value."); continue;
+					System.out.println("Games played cannot exceed 25. Please enter another value.\n"); continue;
 				}
 				
-				System.out.println("Team     W     L     AVG");   
-				System.out.printf("%-5d    %d     %d    %.4f" , id, wins, losses, pct); // first formatter adds 5 spaces after output
+				System.out.println("\nTeam     W     L     AVG");   
+				System.out.printf("%-5d    %d    %d    %.4f" , id, wins, losses, pct); // first formatter adds 5 spaces after output
 				System.out.println("\n");
 				
 					if(gr == 0) {		 // statement will be displayed when all games have been played
@@ -57,13 +57,13 @@ public class hw2
 					if(gr >= 1) {		 // statement will predict team record and winning average if remaining games are won
 							wingr = gr + wins; 
 							newPct = (double)wingr / 25; 
-							System.out.printf("If they win their remaining games, their record will be: %d win(s) and %d losses.\n", wingr, losses);
+							System.out.printf("If remaining games are won, their record will be: %d win(s) and %d losses.\n", wingr, losses);
 							System.out.printf("Their winning average will increase to %.4f.\n", newPct);
 					 	}
 					if(gr >= 1) {  		 // statement will predict team record and winning average if remaining games are lost
 							losegr = gr + losses; 
 							newPct = (double)losegr / 25;  
-							System.out.printf("If they lose their remaining games, their record will be: %d win(s) and %d losses.\n", wins, losegr);
+							System.out.printf("If remaining games are lost, their record will be: %d win(s) and %d losses.\n", wins, losegr);
 							System.out.printf("Their winning average will decrease to %.4f.\n\n", 1 - newPct);
 						}
 					if(gr >= wins) {	 // statement determines if games remaining is greater than number won
@@ -99,7 +99,7 @@ public class hw2
 			
 				if (id == 0) {	  	     //	message is displayed when user enters zero; end of program
 						System.out.println("\nThere are a total of " + leagueTotal + " team(s) in the league."); 
-						System.out.printf("Team " + "%d" + " has the best winning average of " + 
+						System.out.printf("Team " + "%d" + " has the best winning average: " + 
 								"%.4f", bestTeam, bestAvg);
 						System.out.println("\n\n----End of program----"); 
 						input.close();   // close Scanner
