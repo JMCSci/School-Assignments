@@ -43,7 +43,7 @@ public class hw2
 				}
 				
 				System.out.println("Team     W     L     AVG");   
-				System.out.printf("%d      %d    %d    %.4f" , id, wins, losses, pct); 
+				System.out.printf("%-5d    %d     %d    %.4f" , id, wins, losses, pct); // first formatter adds 5 spaces after output
 				System.out.println("\n");
 				
 					if(gr == 0) {		 // statement will be displayed when all games have been played
