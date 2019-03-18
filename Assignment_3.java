@@ -4,7 +4,7 @@
  * 
  * Assignment #3
  * This program will read in scores given by judges during the Olympic games 
- * It will track the best ID, single score, and average score
+ * It will track the best ID, single best score, and average score
  */
 
 package hw3;
@@ -12,16 +12,20 @@ package hw3;
 import java.util.Scanner;
 
 public class hw3 {
+	
+	public static void emptyLine() {										// method prints a blank line in console
+		System.out.println();
+	}
+	
 	public static void main(String[] args) {
 	Scanner input = new Scanner(System.in);
-	int id;
-	double minScore, maxScore, totalScore, score, judgeID, avgScore;
-	double bestAvg = 0, bestID = 0, highScore = 0, highScoreID = 0;
+	int id, judgeID;
+	double avgScore, minScore, maxScore, score, totalScore ;
+	double bestAvg = 0, bestID = 0, highScore = 0, highScoreID = 0;		   // initialized variables will "save" values
 	
 	System.out.print("Enter an ID number: ");
 	id = input.nextInt();
-	
-	while(id > 0) {
+	while(id > 0) {														   // initialized variables reset values when while loop restarts
 		totalScore = 0;
 		avgScore = 0;
 		score = 0;
@@ -30,8 +34,7 @@ public class hw3 {
 		System.out.print("Enter number of judges: ");
 		judgeID = input.nextInt();
 		System.out.println("Enter scores: "); 
-		
-			for(int i = 1; i <= judgeID; i++) { 
+			for(int i = 1; i <= judgeID; i++) { 							// loop to input scores
 				score = input.nextDouble();
 				if(score < minScore) {										// minimum score
 					minScore = score; 
@@ -39,28 +42,25 @@ public class hw3 {
 				if(score > maxScore) {										// maximum score 
 					maxScore = score;
 				}
-				
-				if(score > highScore) {
+				if(score > highScore) {										// best single score
 					highScore = score;
-					highScoreID = id;
-					
+					highScoreID = id;				
 				}
-				totalScore = score + totalScore;
-
+				totalScore = score + totalScore;							// sums scores in loop
 		}	
 			avgScore = (totalScore - minScore - maxScore) / (judgeID - 2);  // formula for average score
 			
 			if(avgScore > bestAvg) {										// track best ID and best average
 				bestAvg = avgScore; 
 				bestID = id; 
-			}
-				
-			System.out.println("Best ID : " + (int)bestID+ " | Best average: " + bestAvg);
-			System.out.println("ID number " + (int)highScoreID + " had the best single score of " + highScore);
-			 
-			System.out.println("Enter an ID number. Enter zero to STOP: ");
+			}	
+			emptyLine();
+			System.out.printf("ID: %d | Average score: %.1f.\n", id, avgScore);
+			System.out.printf("Best ID: %.0f | Best average: %.1f\n", bestID, bestAvg);
+			System.out.printf("ID %.0f recorded the highest single score amongst all athletes (%.1f).\n", highScoreID, highScore);
+			emptyLine();
+			System.out.println("Enter another ID number to continue. Enter zero to STOP: ");
 			id = input.nextInt(); 
-			
 	}
   }
 }
