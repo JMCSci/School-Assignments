@@ -4,10 +4,10 @@
  * 
  * Assignment #3
  * This program will read in scores given by judges during the Olympic games 
- * It will track the best ID, single best score, and average score
+ * It will track the best ID, single score, and average score
  */
 
-package hw3;
+package hw3; 
 
 import java.util.Scanner;
 
@@ -21,11 +21,12 @@ public class hw3 {
 	Scanner input = new Scanner(System.in);
 	int id, judgeID;
 	double avgScore, minScore, maxScore, score, totalScore ;
-	double bestAvg = 0, bestID = 0, highScore = 0, highScoreID = 0;		   // initialized variables will "save" values
+	double bestAvg = 0, bestID = 0, highScore = 0, highScoreID = 0;		    // initialized variables will "save" values
 	
 	System.out.print("Enter an ID number: ");
 	id = input.nextInt();
-	while(id > 0) {														   // initialized variables reset values when while loop restarts
+	
+	while(id > 0) {														    // initialized variables reset values when while loop restarts
 		totalScore = 0;
 		avgScore = 0;
 		score = 0;
@@ -54,13 +55,18 @@ public class hw3 {
 				bestAvg = avgScore; 
 				bestID = id; 
 			}	
-			emptyLine();
 			System.out.printf("ID: %d | Average score: %.1f.\n", id, avgScore);
-			System.out.printf("Best ID: %.0f | Best average: %.1f\n", bestID, bestAvg);
-			System.out.printf("ID %.0f recorded the highest single score amongst all athletes (%.1f).\n", highScoreID, highScore);
+			emptyLine();
+			System.out.printf("Highest average score: %.1f [ID: %.0f]\n", bestAvg, bestID);
+			System.out.printf("ID %.0f recorded the highest single score amongst all athletes [%.1f].\n", highScoreID, highScore);
 			emptyLine();
 			System.out.println("Enter another ID number to continue. Enter zero to STOP: ");
 			id = input.nextInt(); 
+			}	
+	
+	switch(id = 0) {													    // end of program
+	case 0: System.out.println("----END OF PROGRAM----");
+	input.close();
 	}
   }
-}
+} 
