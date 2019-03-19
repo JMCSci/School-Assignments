@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class hw3 {
 	
-	public static void emptyLine() {										// method prints a blank line in console 
+	public static void emptyLine() {					 	// method prints a blank line in console 
 		System.out.println();
 	}
 	
@@ -21,12 +21,12 @@ public class hw3 {
 		Scanner input = new Scanner(System.in);
 		int id, judgeNum;
 		double avgScore, minScore, maxScore, score, totalScore ;
-		double bestAvg = 0, bestID = 0, highScore = 0, highScoreID = 0;		// initialized variables will "save" values
+		double bestAvg = 0, bestID = 0, highScore = 0, highScoreID = 0;		 // initialized variables will "save" values
 	
 		System.out.print("Enter an ID number: ");
 		id = input.nextInt();
 	
-			while(id > 0) {												    // reset values when while loop restarts
+			while(id > 0) {							  // reset values when while loop restarts
 				totalScore = 0;
 				avgScore = 0;
 				score = 0;
@@ -35,23 +35,23 @@ public class hw3 {
 				System.out.print("Enter number of judges: ");
 				judgeNum = input.nextInt();
 				System.out.println("Enter scores: "); 
-				for(int i = 1; i <= judgeNum; i++) { 						// loop to input scores
+				for(int i = 1; i <= judgeNum; i++) { 			// loop to input scores
 						score = input.nextDouble();
-				if(score < minScore) {										// minimum score
+				if(score < minScore) {					// minimum score
 					minScore = score; 
 				}
-				if(score > maxScore) {										// maximum score 
+				if(score > maxScore) {					// maximum score 
 					maxScore = score;
 				}
-				if(score > highScore) {										// best single score
+				if(score > highScore) {					// best single score
 					highScore = score;
 					highScoreID = id;				
 				}
-				totalScore = score + totalScore;							// sums scores in loop
+				totalScore = score + totalScore;			// sums scores in loop
 			  }	
 			avgScore = (totalScore - minScore - maxScore) / (judgeNum - 2); // formula for average score
 			
-			if(avgScore > bestAvg) {										// track best ID and best average
+			if(avgScore > bestAvg) {					// track best ID and best average
 				bestAvg = avgScore; 
 				bestID = id; 
 			}	
@@ -66,7 +66,7 @@ public class hw3 {
 			emptyLine();
 		 }	
 	
-			switch(id = 0) {											   // end of program  
+			switch(id = 0) {						  // end of program  
 			case 0: System.out.println("----END OF PROGRAM----");
 			input.close();
 			}
