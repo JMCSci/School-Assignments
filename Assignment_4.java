@@ -61,12 +61,14 @@ public class HW4 {
 	// returns sum  
 	public static int findsum(int v1, int v2, int v3) { 
 		int max1 = 0, max2 = 0, max3 = 0, sum = 0, maxDUPLICATE = 0;
+		// find max values
 		if(v1 > Integer.MIN_VALUE)
 			max1 = v1; 
 		if(v2 > Integer.MIN_VALUE)
 			max2 = v2; 
 		if(v3 > Integer.MIN_VALUE) 
 			max3 = v3; 
+		// finds duplicate values and store them in maxDUPLICATE variable (to be used in formula)
 		if(max1 == max2 || max1 == max3)
 			maxDUPLICATE = max1;
 		if(max2 == max3 || max2 == max1)
@@ -79,9 +81,8 @@ public class HW4 {
 			sum = max2 + sum;
 		if(max3 >= max1 || max3 >= max2)
 			sum = max3 + sum;
-		if(maxDUPLICATE != 0 && sum < 0)
-			sum = max1 + max2 + max3 - maxDUPLICATE;
-		else if (maxDUPLICATE > 0 && sum == 0)
+		// conditional based formula that removes duplicate number from sum  
+		if(maxDUPLICATE != 0 && sum < 0 || maxDUPLICATE > 0 && sum == 0)
 			sum = max1 + max2 + max3 - maxDUPLICATE;
 		return sum; 
 	}
