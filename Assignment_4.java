@@ -4,7 +4,7 @@
  * 
  * Assignment #4
  * 
- * This program will calculate the the sum of three integers that the user inputs
+ * This program will calculate the the sum of three integers that the user inputs using several methods
  * It will then print their name based on the the sum of the integers
  * The total amount of even numbers that the user inputs will also be tracked
  */
