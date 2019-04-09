@@ -28,7 +28,7 @@ public class HW4 {
 			value2 = input.nextInt();
 			value3 = input.nextInt(); 
 			// combination 0, 0, 0 will end program and subtract 1 from the counter
-			if(value1 == 0 && value3 == 0 && value3 == 0) { 
+			if(value1 == 0 && value2 == 0 && value3 == 0) { 
 			 counter--; break;
 			}
 			System.out.println("The original integers are: " + value1 + ", " + value2 + ", " + value3 + ".");
