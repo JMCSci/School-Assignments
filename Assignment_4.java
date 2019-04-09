@@ -68,7 +68,7 @@ public class HW4 {
 			max2 = v2; 
 		if(v3 > Integer.MIN_VALUE) 
 			max3 = v3; 
-		// finds duplicate values and store them in maxDUPLICATE variable (to be used in formula)
+		// finds duplicate values and stores them in maxDUPLICATE variable (to be used in formula)
 		if(max1 == max2 || max1 == max3)
 			maxDUPLICATE = max1;
 		if(max2 == max3 || max2 == max1)
