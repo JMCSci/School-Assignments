@@ -47,36 +47,49 @@ public class HW4 {
 		input.close();
 	}
 	// Method: emptyLine -- prints a blank line
+	// no value returned
 	public static void emptyLine() {
 		System.out.println();
 	}
-	// Method: introduction -- prints name - no value returned
+	// Method: introduction -- prints name
+	// no value returned
 	public static void introduction() {
 		System.out.println("Jason Moreau");
 	}
 	// Method: findsum -- calculates sum of two largest integers -- receives parameters from main (value1, value2, value3)
-	// returns sum
+	// duplicate values are only counted ONCE 
+	// returns sum  
 	public static int findsum(int v1, int v2, int v3) { 
-		int max1 = 0, max2 = 0, max3 = 0, sum = 0;
-		if(v1 > v2 || v1 > v3)
+		int max1 = 0, max2 = 0, max3 = 0, sum = 0, maxDUPLICATE = 0;
+		if(v1 > Integer.MIN_VALUE)
 			max1 = v1; 
-		if(v2 > v1 || v2 > v3)
+		if(v2 > Integer.MIN_VALUE)
 			max2 = v2; 
-		if(v3 > v1 || v3 > v2)
-			max3 = v3;
-		if(max1 > max2 || max1 > max3)
+		if(v3 > Integer.MIN_VALUE) 
+			max3 = v3; 
+		if(max1 == max2 || max1 == max3)
+			maxDUPLICATE = max1;
+		if(max2 == max3 || max2 == max1)
+			maxDUPLICATE = max2;
+		if(max3 == max1 || max3 == max2)
+			maxDUPLICATE = max3;
+		if(max1 >= max2 || max1 >= max3)
 			sum = max1 + sum; 
-		if(max2 > max1 || max2 > max3)
+		if(max2 >= max1 || max2 >= max3)
 			sum = max2 + sum;
-		if(max3 > max1 || max3 > max2)
-			sum = max1 + max2 + max3;  
+		if(max3 >= max1 || max3 >= max2)
+			sum = max3 + sum;
+		if(maxDUPLICATE != 0 && sum < 0)
+			sum = max1 + max2 + max3 - maxDUPLICATE;
+		else if (maxDUPLICATE > 0 && sum == 0)
+			sum = max1 + max2 + max3 - maxDUPLICATE;
 		return sum; 
 	}
-	// Method: printmyname -- prints name based on answer variable passed to method and used as loop counter
-	// amount of times name is printed based on value of parameter passed to method
-	// not value returned
+	// Method: printmyname -- prints name based on answer variable passed to method (also used as loop counter)
+	// amount of times name is printed is based on value of parameter passed to method 
+	// no value returned
 	public static void printmyname(int loopCount) {
-		for(int i = 0; i <= loopCount; i++) {
+		for(int i = 1; i <= loopCount; i++) {
 			if(loopCount > 0 && loopCount <= 10)
 			System.out.println("Jason Moreau");
 			} if(loopCount <= 0) {
@@ -86,15 +99,14 @@ public class HW4 {
 			}
 		}
 	// Method: howmanyeven -- determines how many values are even -- parameters passed to method (value1, value2, value3)
-	// if statement doesn't count zero as an even number
 	// returns total even numbers to main
 	public static int howmanyeven(int val1, int val2, int val3) {
 		int totalEven = 0; 
-		if(val1 % 2 == 0 && val1 != 0)  
+		if(val1 % 2 == 0)  
 			totalEven++;	
-		if(val2 % 2 == 0 && val2 != 0)
+		if(val2 % 2 == 0)
 			totalEven++;
-		if(val3 % 2 == 0 && val3 != 0)
+		if(val3 % 2 == 0)
 			totalEven++;
 		return totalEven;
 	}
