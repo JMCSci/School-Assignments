@@ -27,6 +27,7 @@ public class HW5 {
 				System.out.print("Input an integer between 1 and 6 for Die 2: ");
 				die2 = input.nextInt();
 				System.out.println("Die 2 is: " + die2);
+				// value returned by outcome method is saved and used to determine message that will be printed
 				dieReturn = outcome(die1, die2);
 				// roll 2 or 12 -- player loses 
 				if(dieReturn == 2 || dieReturn == 12) {
@@ -48,7 +49,7 @@ public class HW5 {
 			input.close();
 			}
 	
-	// method returns sum of Die 1 and Die 2
+	// Method outcome -- returns sum of Die 1 and Die 2
 	public static int outcome(int die1, int die2) {
 		int sum, dieSum = 0;
 		sum = die1 + die2;
@@ -64,7 +65,7 @@ public class HW5 {
 		return dieSum;
 	}
 	
-	// method will determine if user wins game
+	// Method: continueGame -- user plays game until they win
 	public static void continueGame(int dieSum) {
 		Scanner input = new Scanner(System.in);
 		int die3, die4, result; 
