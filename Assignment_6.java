@@ -21,7 +21,7 @@ public class HW6 {
 		double [] firstArray = new double [50];
 		double [] secondArray = new double [50];
 	// size variable will be used in method for loop
-		int size = 15;
+		int size = 3;
 		double average1, average2;
 	// call readData method to read size items into firstArray
 		readData(firstArray, size);
@@ -47,6 +47,7 @@ public class HW6 {
 		for(int i = 0; i < size; i++) {
 			firstArray[i] = input.nextDouble();
 		}
+		input.close();
 	}
 	// Method: printArray -- prints values stored in firstArray
 	public static void printArray(double firstArray[], int size) {
