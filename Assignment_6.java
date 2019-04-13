@@ -13,11 +13,12 @@
 
 package hw6;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class HW6 {
-	public static void main(String[] args) {
-	// array will be large but all of the elements will not be used
+	public static void main(String[] args) throws Exception {
+	// array will be large but all of the elements will not be used 
 		double [] firstArray = new double [50];
 		double [] secondArray = new double [50];
 	// size variable will be used in method for loop
@@ -40,10 +41,9 @@ public class HW6 {
 		average2 = findAverage(secondArray, size);
 		System.out.printf("\n\nThe average of the values stored in the second array is: %.2f", average2);
 	}
-	// Method: readData -- read size items into array
-	public static void readData(double firstArray[], int size) {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Input values of array: ");
+	// Method: readData -- read size items into array  
+	public static void readData(double firstArray[], int size) throws Exception{
+		Scanner input = new Scanner(new File("/Users/jasonmoreau/Desktop/data.txt"));
 		for(int i = 0; i < size; i++) {
 			firstArray[i] = input.nextDouble();
 		}
@@ -83,8 +83,8 @@ public class HW6 {
 				System.out.printf("%.2f" + "\t", secondArray[i]);
 	}
 	// Method: findAverage -- calculates the average of values stored in secondArray -- method overload
-	public static double findAverage(int secondArray[], int size) {
-		int sum = 0;
+	public static double findAverage(double secondArray[], int size) {
+		double sum = 0;
 		double averageValue2;
 		for(int i = 0; i < size; i++) {
 			sum = secondArray[i] + sum;
