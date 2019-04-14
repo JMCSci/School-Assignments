@@ -21,11 +21,25 @@ public class HW5 {
 		int die1, die2, dieReturn = 0;
 		System.out.print("Input an integer between 1 and 6 for Die 1: ");
 		die1 = input.nextInt();
-		
+		// checks die roll to see if user input is between 1 and 6
+		if(die1 < 0 || die1 > 6) {
+			while(die1 < 0 || die1 > 6) {
+				System.out.print("Please enter a valid number from 1 - 6: ");
+				die1 = input.nextInt();
+			}
+		} else 
+			
 			while(die1 > 0) {	
 				System.out.println("Die 1 is: " + die1);
 				System.out.print("Input an integer between 1 and 6 for Die 2: ");
 				die2 = input.nextInt();
+				// checks die roll to see if user input is between 1 and 6
+				if(die2 < 0 || die2 > 6) {
+					while(die2 < 0 || die2 > 6) {
+					System.out.print("Please enter a valid number from 1 - 6: ");
+					die2 = input.nextInt();
+					}
+				} else
 				System.out.println("Die 2 is: " + die2);
 				// value returned by outcome method is saved and used to determine message that will be printed
 				dieReturn = outcome(die1, die2);
@@ -71,12 +85,26 @@ public class HW5 {
 		int die3, die4, result; 
 		System.out.println("Input an integer between 1 and 6 for Die 3: ");
 		die3 = input.nextInt();
-		while(die3 > 0) {
-			
+		// checks die roll to see if user input is between 1 and 6
+		if(die3 < 0 || die3 > 6) {
+			while(die3 < 0 || die3 > 6) {
+			System.out.print("Please enter a valid number from 1 - 6: ");
+			die3 = input.nextInt();
+			}
+		} else
 		System.out.println("Die 3 is: " + die3);
+		
+		while(die3 > 0) {
 		System.out.println("Input an integer between 1 and 6 for Die 4: ");
 		die4 = input.nextInt();
-		System.out.println("Die 4 is: " + die3);
+		// checks die roll to see if user input is between 1 and 6
+		if(die4 < 0 || die4 > 6) {
+			while(die4 < 0 || die4 > 6) {
+			System.out.print("Please enter a valid number from 1 - 6: ");
+			die4 = input.nextInt();
+			}
+		} else
+		System.out.println("Die 4 is: " + die4);
 		result = die3 + die4; 
 		if(result == 7) {
 			System.out.println("You lose.\n");break;
