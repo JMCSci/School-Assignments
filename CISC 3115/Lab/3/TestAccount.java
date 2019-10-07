@@ -16,10 +16,10 @@ package account;
 import java.util.Scanner;
 import java.io.File;
 
-public class TestAccount {
+public class TestLab_3 {
 	public static void main(String[] args) throws Exception {
 		double arrayBalance = 0;
-		// Account array
+		// Create Account object array
 		Account[] accountArray = new Account[5];
 		
 		inputData(accountArray);
@@ -31,7 +31,7 @@ public class TestAccount {
 		printArray(accountArray);
 		emptyLine();
 		arrayBalance = totalBalance(accountArray, arrayBalance);
-		System.out.println("Total array balance: " + arrayBalance);
+		System.out.printf("Total array balance: %.2f", arrayBalance);
 
 	}
 	/* METHOD: inputData 
@@ -85,6 +85,7 @@ public class TestAccount {
 			}
 			return arrayBalance;
 		}
+	
 	/* METHOD: emptyLine
 	 * Prints an empty line to the console
 	 */
