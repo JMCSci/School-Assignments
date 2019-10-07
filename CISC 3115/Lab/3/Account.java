@@ -8,7 +8,10 @@
 
 package account;
 
+import java.text.DecimalFormat;
+
 public class Account {
+	DecimalFormat decimal = new DecimalFormat("##.00");			      // format string value two decimal places
 	private String name;
 	private double balance;
 	
@@ -48,7 +51,7 @@ public class Account {
 	 * Print data
 	 */
 	public String toString() {
-		return name + "\t" + "$" + balance;
+		return name + "\t" + "$" + decimal.format(balance);
 		
 	}
 	
