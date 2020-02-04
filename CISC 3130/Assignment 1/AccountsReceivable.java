@@ -30,32 +30,32 @@ public class AccountsReceivable {
 		/* Pass scanner as argument so that tokens are read sequentially */
 		Account account1 = new Account();
 		seekIndex = 25;
-		account1.getTransaction(sc1, sc2, seekIndex);
+		account1.inputTransaction(sc1, sc2, seekIndex);
 		account1.invoice();
-	//	account1.readTransaction(1);  		// can be used to read individual transactions
+	//	account1.getTransaction(1);  		// can be used to read individual transactions
 		
 		Account account2 = new Account();
-		seekIndex = account2.getTransaction(sc1, sc2, (seekIndex + 36));
+		seekIndex = account2.inputTransaction(sc1, sc2, (seekIndex + 36));
 		account2.invoice();
 		
 		Account account3 = new Account();
-		seekIndex = account3.getTransaction(sc1, sc2, (seekIndex + 36));
+		seekIndex = account3.inputTransaction(sc1, sc2, (seekIndex + 36));
 		account3.invoice(); 
 		
 		Account account4 = new Account();
-		seekIndex = account4.getTransaction(sc1, sc2, (seekIndex + 36));
+		seekIndex = account4.inputTransaction(sc1, sc2, (seekIndex + 36));
 		account4.invoice();
 		
 		Account account5 = new Account();
-		seekIndex = account5.getTransaction(sc1, sc2, (seekIndex + 36));
+		seekIndex = account5.inputTransaction(sc1, sc2, (seekIndex + 36));
 		account5.invoice();
 		
 		Account account6 = new Account();
-		seekIndex = account6.getTransaction(sc1, sc2, (seekIndex + 36));
+		seekIndex = account6.inputTransaction(sc1, sc2, (seekIndex + 36));
 		account6.invoice();
 		
 		Account account7 = new Account();
-		seekIndex = account7.getTransaction(sc1, sc2, (seekIndex + 36));
+		seekIndex = account7.inputTransaction(sc1, sc2, (seekIndex + 36));
 		account7.invoice();
 		
 		sc1.close();
