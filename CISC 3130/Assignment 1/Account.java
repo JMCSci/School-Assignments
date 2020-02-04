@@ -56,11 +56,11 @@ public class Account {
 		runningTotal = newValue;
 	}
 	
-	/* getTransaction: Retrieves and creates a transaction
+	/* inputTransaction: Retrieves and creates a transaction
 	 * Reads from Scanner class 
 	 * Creates a new Transaction object and updates balance in master file
 	 */
-	public int getTransaction(Scanner sc1, Scanner sc2, int seekIndex) throws Exception, EOFException {		
+	public int inputTransaction(Scanner sc1, Scanner sc2, int seekIndex) throws Exception, EOFException {		
 		File file = new File("masterFile");
 		RandomAccessFile inout = new RandomAccessFile(file, "rw");
 		DecimalFormat decimal = new DecimalFormat("##.00");
@@ -75,17 +75,17 @@ public class Account {
 		Scanner scanner = new Scanner(new File("transactionFile"));
 		String line = "";
 		
-		// Search file for id -- use it to check parameter
+		// Search file for id -- if there is a match, add line token to line variable (used in next while loop), if not, program ends
 		while(scanner.hasNext()) {
 			if(scanner.nextLine().startsWith(id)) {
 				line = id.toString();
-				//System.out.println(line);
 				break;
-			}
+			} 
 		}
 		
+		// Use matching id in file to get transaction data
 		while(line.startsWith(id)) {
-			// Start 2nd scanner where id equal first token
+			// Start 2nd scanner when id equal to first token; inputs each token manually into variable; used in Transaction constructor
 			sc2.next();
 			String type = sc2.next();
 			int tNumber = sc2.nextInt();
@@ -93,44 +93,44 @@ public class Account {
 			int quantity = sc2.nextInt();
 			double itemPrice  = sc2.nextDouble();
 			double transactionTotal = sc2.nextDouble();
-			
+			// Create transaction object and add it ArrayList
 			Transaction transaction = new Transaction(id, type, tNumber, description, 
 					quantity, itemPrice, transactionTotal);
 			list.add(transaction);
-			// If scanner contains another line continue and add to line string
-			// Use line to check while condition
-			// If not, stop
+			// If scanner contains another line continue reading and add line token to line variable and update file
+			// Use line variable to check while condition
+			// If next line doesn't exist, stop reading and update file
 				if(scanner.hasNextLine()) {
 					line = scanner.nextLine();
 				} else {
+					inout.seek(seekIndex);
+					inout.writeBytes(decimal.format(finalBalance));
 					break;
 				}
-				
 				// Append file contents
-				 // -- finalBalance will be the initialBalance -- 
 				inout.seek(seekIndex);
-				inout.writeBytes(decimal.format(finalBalance));		
+				inout.writeBytes(decimal.format(finalBalance));
 		}
 		scanner.close(); 
 		inout.close();
 		return seekIndex;
 	}
 	
-	/* readTransaction: Account invoice */
+	/* invoice: Prints account invoice to console */
 	public void invoice() {
 		System.out.println(name + "\t" + id + "\t");
-		System.out.printf("Previous balance: %.2f\n", initialBalance);
+		System.out.printf("Previous balance: $%.2f\n", initialBalance);
 		emptyLine();
 		for(Transaction text: list) {
-			System.out.println(text.getId() + "\t" + text.getDescription() + "\t" + text.getPrice());
+			System.out.printf("%-10s %-20s $%-10.2f \n", text.getNumber(), text.getDescription(), text.getPrice());
 		}
 		emptyLine();
 		System.out.printf("Balance due: $%.2f \n", finalBalance);
 		emptyLine();
 	}	
 	
-	/* getTransaction: Used to retrieve individual transactions */
-	public void getTransaction(int transactionNumber) {
+	/* getTransaction: Retrieves individual transactions */
+	public void readTransaction(int transactionNumber) {
 		System.out.println("\n" + list.get(transactionNumber).toString());
 	}
 	
