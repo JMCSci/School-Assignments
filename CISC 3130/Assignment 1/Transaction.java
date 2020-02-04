@@ -1,5 +1,7 @@
 /* Transaction class
  * Creates a new transaction object
+ * Object is stored in ArrayList in Account class
+ * Individual transaction can be called with readTransaction method Account class 
  */
 
 package assignment1;
@@ -15,7 +17,6 @@ public class Transaction extends Account {
 	protected double itemPrice = 0;
 	protected double transactionTotal = 0;
 	protected double balance = 0;
-
 	DecimalFormat decimal = new DecimalFormat("##.00");
 	
 	// Creates a new transaction when called from Account class
