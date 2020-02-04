@@ -109,8 +109,7 @@ public class Account {
 				// Append file contents
 				 // -- finalBalance will be the initialBalance -- 
 				inout.seek(seekIndex);
-				inout.writeBytes(decimal.format(finalBalance));
-				
+				inout.writeBytes(decimal.format(finalBalance));		
 		}
 		scanner.close(); 
 		inout.close();
