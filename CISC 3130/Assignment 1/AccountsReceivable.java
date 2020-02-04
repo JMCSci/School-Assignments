@@ -6,7 +6,7 @@
  *  
  * "ABC" Hardware Company" has hired me to write a program for its Accounts Receivable department 
  * Program reads in records from two separate files
- * Transaction file record to update master file
+ * Transaction file used to update master file
  * Uses OOP
  */
 
@@ -17,7 +17,6 @@ import java.io.File;
 
 public class AccountsReceivable {
 	public static void main(String[] args) throws Exception {
-		
 		File file1 = new File("masterFile");
 		Scanner sc1 = new Scanner(file1);
 			
@@ -33,6 +32,7 @@ public class AccountsReceivable {
 		seekIndex = 25;
 		account1.getTransaction(sc1, sc2, seekIndex);
 		account1.invoice();
+	//	account1.readTransaction(1);  		// can be used to read individual transactions
 		
 		Account account2 = new Account();
 		seekIndex = account2.getTransaction(sc1, sc2, (seekIndex + 36));
@@ -40,8 +40,23 @@ public class AccountsReceivable {
 		
 		Account account3 = new Account();
 		seekIndex = account3.getTransaction(sc1, sc2, (seekIndex + 36));
-		account3.invoice();
-	//	account3.getTransaction(1);  		// can be used to read individual transactions 
+		account3.invoice(); 
+		
+		Account account4 = new Account();
+		seekIndex = account4.getTransaction(sc1, sc2, (seekIndex + 36));
+		account4.invoice();
+		
+		Account account5 = new Account();
+		seekIndex = account5.getTransaction(sc1, sc2, (seekIndex + 36));
+		account5.invoice();
+		
+		Account account6 = new Account();
+		seekIndex = account6.getTransaction(sc1, sc2, (seekIndex + 36));
+		account6.invoice();
+		
+		Account account7 = new Account();
+		seekIndex = account7.getTransaction(sc1, sc2, (seekIndex + 36));
+		account7.invoice();
 		
 		sc1.close();
 		sc2.close();
