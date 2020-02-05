@@ -1,8 +1,8 @@
 /* Account class
  * Reads and updates master file using transaction file
  * Creates a new Transaction object for an individual account
- * Each transactions is saved in a data structure (ArrayList)
- * When necessary, an individual transaction can be called using the getTransaction method
+ * Each transaction is saved in a data structure -- ArrayList
+ * Individual account transactions can be called using the getTransaction method
  * An invoice for each account can be printed to the console using the invoice method
  */
 
@@ -23,8 +23,7 @@ public class Account {
 	protected static double finalBalance = 0;
 	protected static int index = 0;
 	protected static double runningTotal = 0;
-
-	// Create a dynamic array for each Account instance
+	// Creates a dynamic array for each Account instance
 	// List contains each transaction per account
 	ArrayList<Transaction> list = new ArrayList<>();
 	
@@ -61,7 +60,7 @@ public class Account {
 	 * Creates a new Transaction object and updates balance in master file
 	 */
 	public int inputTransaction(Scanner sc1, Scanner sc2, int seekIndex) throws Exception, EOFException {		
-		File file = new File("masterFile");
+		File file = new File("master");
 		RandomAccessFile inout = new RandomAccessFile(file, "rw");
 		DecimalFormat decimal = new DecimalFormat("##.00");
 
@@ -72,7 +71,7 @@ public class Account {
 		
 		initialBalance = previousBalance;
 
-		Scanner scanner = new Scanner(new File("transactionFile"));
+		Scanner scanner = new Scanner(new File("transaction"));
 		String line = "";
 		
 		// Search file for id -- if there is a match, add line token to line variable (used in next while loop), if not, program ends
@@ -118,14 +117,27 @@ public class Account {
 	
 	/* invoice: Prints account invoice to console */
 	public void invoice() {
-		System.out.println(name + "\t" + id + "\t");
-		System.out.printf("Previous balance: $%.2f\n", initialBalance);
+		System.out.printf("%-10s %s \n", name, id);
+		if(initialBalance < 0) {
+			System.out.printf("Previous balance: %15s %.2f\n", "-$", Math.abs(initialBalance));
+		} else {
+			System.out.printf("Previous balance: %15s %.2f\n", "$", initialBalance);
+		}
+		
 		emptyLine();
 		for(Transaction text: list) {
-			System.out.printf("%-10s %-20s $%-10.2f \n", text.getNumber(), text.getDescription(), text.getPrice());
+			if(text.getType().contentEquals("P")) {
+				System.out.printf("%-10s %-19s -$ %-10.2f \n", text.getNumber(), text.getDescription(), text.getTotal());
+			} else {
+				System.out.printf("%-10s %-20s $ %-10.2f \n", text.getNumber(), text.getDescription(), text.getTotal());
+			}
 		}
 		emptyLine();
-		System.out.printf("Balance due: $%.2f \n", finalBalance);
+		if(finalBalance < 0) {
+			System.out.printf("Balance owed: %19s $%.2f \n", "$", Math.abs(finalBalance));
+		} else {
+			System.out.printf("Balance due:  %19s %3.2f \n", "$", finalBalance);
+		}
 		emptyLine();
 	}	
 	
@@ -134,8 +146,10 @@ public class Account {
 		System.out.println("\n" + list.get(transactionNumber).toString());
 	}
 	
+	/* emptyLine: Prints a blank line (whitespace) */
 	public void emptyLine() {
 		System.out.println();
 	}
 	
 }
+
