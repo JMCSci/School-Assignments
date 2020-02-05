@@ -1,0 +1,83 @@
+OUTPUT
+
+Terry      0001 
+Previous balance:               $ 1050.00
+
+1001       Hand_truck           $ 338.98     
+1002       Dolly                $ 144.95     
+1003       Cart                 $ 99.99      
+1004       Payment             -$ 20.00      
+
+Balance due:                    $ 1613.92 
+
+-----------------------------------------------
+
+Bob        0002 
+Previous balance:               $ 500.00
+
+2001       Dehumidifier         $ 189.99     
+2002       Filter               $ 9.98       
+2003       Hose                 $ 99.98      
+
+Balance due:                    $ 799.95 
+
+-----------------------------------------------
+
+Kelly      0003 
+Previous balance:               $ 728.60
+
+3001       Barrel               $ 79.99      
+3002       Payment             -$ 50.00      
+
+Balance due:                    $ 758.59 
+
+-----------------------------------------------
+
+Michael    0004 
+Previous balance:               $ 100.00
+
+4001       Payment             -$ 50.00      
+
+Balance due:                    $ 50.00 
+
+-----------------------------------------------
+
+Darius     0005 
+Previous balance:               $ 430.00
+
+5001       Rake                 $ 44.97      
+5002       Batteries            $ 89.99      
+5003       Circuit_Breaker      $ 45.98      
+5004       Cabinet              $ 159.99     
+5005       Power_Strip          $ 39.95      
+
+Balance due:                    $ 810.88 
+
+-----------------------------------------------
+
+Victoria   0006 
+Previous balance:               $ 230.00
+
+6001       Extension_Cord       $ 255.92     
+6002       Bluetooth_Speaker    $ 69.99      
+6003       Cordless_Phone       $ 59.97      
+6004       Flashlight           $ 194.85     
+6005       Payment             -$ 250.50     
+6006       50ft_Audio_Wire      $ 53.98      
+
+Balance due:                    $ 614.21 
+
+-----------------------------------------------
+
+Allison    0007 
+Previous balance:               $ 100.00
+
+7001       Hand_truck           $ 338.98     
+7002       Payment             -$ 300.00     
+7002       Work_Light           $ 699.93     
+7003       Payment             -$ 20.00      
+
+Balance due:                    $ 818.91 
+
+-----------------------------------------------
+
