@@ -1,7 +1,7 @@
 /* Transaction class
  * Creates a new transaction object
  * Object is stored in ArrayList in Account class
- * Individual transaction can be called with readTransaction method Account class 
+ * Individual transactions can be called with getTransaction method in Account class 
  */
 
 package assignment1;
@@ -38,7 +38,7 @@ public class Transaction extends Account {
 	public void calculate() {
 		if(type.matches("O")) {
 			// process order
-		setRunningTotal(getPreviousBalance() + itemPrice);
+		setRunningTotal(getPreviousBalance() + transactionTotal);
 			this.setPreviousBalance(getRunningTotal());
 		} else if(type.matches("P")) { 
 			//process payment
@@ -84,3 +84,4 @@ public class Transaction extends Account {
 	}
 	
 }
+
