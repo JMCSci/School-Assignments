@@ -1,5 +1,3 @@
-OUTPUT
-
 Terry      0001 
 Previous balance:               $ 1050.00
 
