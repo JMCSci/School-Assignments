@@ -1,12 +1,11 @@
 package assignment2;
 
 import java.io.File;
-import java.util.Scanner;
 import java.io.RandomAccessFile;
 import java.io.EOFException;
 
 public class Test {
-	static boolean change = false;  	// if previous change true
+	static boolean change = false;  	 // if previous change true
 	static int type_Index = 0;
 	static int cityIndex = 2; 			 // increments of 14 (2, 16, 30, 44 ... etc)
 	static int amt_1_Index = 4;
@@ -17,12 +16,9 @@ public class Test {
 	static byte [] column2 = new byte [2];
 	static byte [] column3 = new byte [2];
 	static byte [] type = new byte [1];
+	static String [] cityArray = {"New York", "Miami", "Los Angeles", "Houston", "Chicago"};
 	
 	public static void main(String[] args) throws Exception {
-		
-		Scanner input = new Scanner(new File("NumCity"));
-		 
-		String [] cityArray = {"New York", "Miami", "Los Angeles", "Houston", "Chicago"};
 		String [] type = new String [18];
 		int [][] inventory = new int [5][3];
 		
@@ -31,27 +27,9 @@ public class Test {
 
 		// Call function each time so that it is read sequentially
 		initialInventory(inventory);
-		readData(warehouse, inventory); // New York
-		readData(warehouse, inventory); // Miami
-		readData(warehouse, inventory); // Los Angeles
-		readData(warehouse, inventory); // Houston
-		readData(warehouse, inventory); // Chicago
-		readData(warehouse, inventory); // New York
-		readData(warehouse, inventory); // Miami
-		readData(warehouse, inventory); // Los Angeles order -- correct
-		readData(warehouse, inventory); // New York order -- correct
-		readData(warehouse, inventory); // Houston order -- correct
-		readData(warehouse, inventory); // Chicago order --	correct
-		readData(warehouse, inventory); // New York order -- correct
-		readData(warehouse, inventory); // correct
-		readData(warehouse, inventory); // correct
-		readData(warehouse, inventory); // New York order -- correct
-		readData(warehouse, inventory); // Chicago --
-		readData(warehouse, inventory); // New York --
-		readData(warehouse, inventory); // Houston --
-		printInventory(inventory, cityArray);
-		
-		input.close();
+		for(int i = 0; i < type.length; i++) {
+			readData(warehouse, inventory, cityArray);
+		}
 	}
 	
 	public static void initialInventory(int inventory[][]) {
@@ -64,9 +42,8 @@ public class Test {
 	}
 	
 	/* readData: Read data into 2D array */
-	public static void readData(Inventory warehouse, int inventory[][]) throws Exception, EOFException{
-		RandomAccessFile inout = new RandomAccessFile(new File("NumCity"), "rw");
-		int row = 0;
+	public static void readData(Inventory warehouse, int inventory[][], String cityArray[]) throws Exception, EOFException{
+		RandomAccessFile inout = new RandomAccessFile(new File("NumCity"), "r");
 		int column = 0;
 		int city = 0;
 		
@@ -83,18 +60,18 @@ public class Test {
 		// Convert cityByte to integer -- used in conditional
 		city = Integer.parseInt(cityByte);
 		
-		if(city == 1) {					// NEW YORK
-			// Get bytes and convert to integers - amt1, amt2, amt3
-			inout.seek(amt_1_Index);
-			inout.read(column1);
-			String amt1 = new String(column1);
-			inout.seek(amt_2_Index);
-			inout.read(column2);
-			String amt2 = new String(column2);
-			inout.seek(amt_3_Index);
-			inout.read(column3);
-			String amt3 = new String(column3);			
-			
+		// Get bytes and convert to integers - amt1, amt2, amt3
+		inout.seek(amt_1_Index);
+		inout.read(column1);
+		String amt1 = new String(column1);
+		inout.seek(amt_2_Index);
+		inout.read(column2);
+		String amt2 = new String(column2);
+		inout.seek(amt_3_Index);
+		inout.read(column3);
+		String amt3 = new String(column3);		
+	
+		if(city == 0) {					// NEW YORK
 			// Get current amount in warehouse
 			warehouse.setCurrentAmt1(inventory[0][0]);
 			warehouse.setCurrentAmt2(inventory[0][1]);
@@ -114,7 +91,6 @@ public class Test {
 			
 			// Calculate warehouse totals
 			warehouse.calculate();
-			
 			// If amount is negative -- check each warehouse to see which one cannot meet order
 			// Call findItems method -- use item variable to check array column
 			// Find warehouse with the most of item and have it send the amount instead
@@ -125,7 +101,7 @@ public class Test {
 					int item1 = 0;
 					int requiredAmount = temp1;
 					requiredAmount =+ warehouse.getTempAmt1();
-					stockResult = findItems(inventory, item1, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item1, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array  
 					inventory[0][column] += stockResult;
@@ -140,7 +116,7 @@ public class Test {
 					int requiredAmount = temp2;
 				//	int stockResult = 0;
 					requiredAmount =+ warehouse.getTempAmt2();
-					stockResult = findItems(inventory, item2, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item2, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array
 					inventory[0][column] = warehouse.getTempAmt1();
@@ -154,7 +130,7 @@ public class Test {
 					int item3 = 2;
 					int requiredAmount = temp3;
 					requiredAmount =+ warehouse.getTempAmt3();
-					stockResult = findItems(inventory, item3, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item3, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					inventory[0][column] = warehouse.getTempAmt1();
 					column++;
@@ -171,18 +147,7 @@ public class Test {
 				inventory[0][column] = warehouse.getTempAmt3();
 			}
 			
-		} else if(city == 2) {				// MIAMI
-			// Get bytes and convert to integers - amt1, amt2, amt3
-			inout.seek(amt_1_Index);
-			inout.read(column1);
-			String amt1 = new String(column1);
-			inout.seek(amt_2_Index);
-			inout.read(column2);
-			String amt2 = new String(column2);
-			inout.seek(amt_3_Index);
-			inout.read(column3);
-			String amt3 = new String(column3);			
-						
+		} else if(city == 1) {				// MIAMI	
 			// Get current amount in warehouse
 			warehouse.setCurrentAmt1(inventory[1][0]);
 			warehouse.setCurrentAmt2(inventory[1][1]);
@@ -202,8 +167,6 @@ public class Test {
 						
 			// Calculate warehouse totals
 			warehouse.calculate();
-			
-
 			// If amount is negative -- check each warehouse to see which one cannot meet order
 			// Call findItems method -- use item variable to check array column
 			// Find warehouse with the most of item and have it send the amount instead
@@ -213,7 +176,7 @@ public class Test {
 					int item1 = 0;
 					int requiredAmount = temp1;
 					requiredAmount =+ warehouse.getTempAmt1();
-					stockResult = findItems(inventory, item1, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item1, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array  
 					inventory[1][column] =+ stockResult;
@@ -227,7 +190,7 @@ public class Test {
 					int item2 = 1;
 					int requiredAmount = temp2;
 					requiredAmount =+ warehouse.getTempAmt2();
-					stockResult = findItems(inventory, item2, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item2, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array
 					inventory[1][column] = warehouse.getTempAmt1();
@@ -241,7 +204,7 @@ public class Test {
 					int item3 = 2;
 					int requiredAmount = temp3;
 					requiredAmount =+ warehouse.getTempAmt3();
-					stockResult = findItems(inventory, item3, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item3, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					inventory[1][column] = warehouse.getTempAmt1();
 					column++;
@@ -258,18 +221,7 @@ public class Test {
 				inventory[1][column] = warehouse.getTempAmt3();
 			}
 			
-		} else if(city == 3) {				// LOS ANGELES
-			// Get bytes and convert to integers - amt1, amt2, amt3
-			inout.seek(amt_1_Index);
-			inout.read(column1);
-			String amt1 = new String(column1);
-			inout.seek(amt_2_Index);
-			inout.read(column2);
-			String amt2 = new String(column2);
-			inout.seek(amt_3_Index);
-			inout.read(column3);
-			String amt3 = new String(column3);			
-									
+		} else if(city == 2) {				// LOS ANGELES					
 			// Get current amount in warehouse
 			warehouse.setCurrentAmt1(inventory[2][0]);
 			warehouse.setCurrentAmt2(inventory[2][1]);
@@ -289,8 +241,6 @@ public class Test {
 									
 			// Calculate warehouse totals
 			warehouse.calculate();
-									
-
 			// If amount is negative -- check each warehouse to see which one cannot meet order
 			// Call findItems method -- use item variable to check array column
 			// Find warehouse with the most of item and have it send the amount instead
@@ -300,7 +250,7 @@ public class Test {
 					int item1 = 0;
 					int requiredAmount = temp1;
 					requiredAmount =+ warehouse.getTempAmt1();
-					stockResult = findItems(inventory, item1, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item1, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array  
 					inventory[2][column] =+ stockResult;
@@ -314,7 +264,7 @@ public class Test {
 					int item2 = 1;
 					int requiredAmount = temp2;
 					requiredAmount =+ warehouse.getTempAmt2();
-					stockResult = findItems(inventory, item2, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item2, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array
 					inventory[2][column] = warehouse.getTempAmt1();
@@ -328,7 +278,7 @@ public class Test {
 					int item3 = 2;
 					int requiredAmount = temp3;
 					requiredAmount =+ warehouse.getTempAmt3();
-					stockResult = findItems(inventory, item3, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item3, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					inventory[0][column] = warehouse.getTempAmt1();
 					column++;
@@ -345,17 +295,7 @@ public class Test {
 				inventory[2][column] = warehouse.getTempAmt3();
 			}
 
-		} else if(city == 4) { 					// HOUSTON
-			inout.seek(amt_1_Index);
-			inout.read(column1);
-			String amt1 = new String(column1);
-			inout.seek(amt_2_Index);
-			inout.read(column2);
-			String amt2 = new String(column2);
-			inout.seek(amt_3_Index);
-			inout.read(column3);
-			String amt3 = new String(column3);
-			
+		} else if(city == 3) { 					// HOUSTON	
 			// Get current amount in warehouse
 			warehouse.setCurrentAmt1(inventory[3][0]);
 			warehouse.setCurrentAmt2(inventory[3][1]);
@@ -376,7 +316,6 @@ public class Test {
 			// Calculate warehouse totals
 			warehouse.calculate();
 			
-
 			// If amount is negative -- check each warehouse to see which one cannot meet order
 			// Call findItems method -- use item variable to check array column
 			// Find warehouse with the most of item and have it send the amount instead
@@ -386,7 +325,7 @@ public class Test {
 					int item1 = 0;
 					int requiredAmount = temp1; 
 					requiredAmount =+ warehouse.getTempAmt1();
-					stockResult = findItems(inventory, item1, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item1, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array  
 					inventory[3][column] += stockResult;
@@ -400,7 +339,7 @@ public class Test {
 					int item2 = 1;
 					int requiredAmount = temp2;
 					requiredAmount =+ warehouse.getTempAmt2();
-					stockResult = findItems(inventory, item2, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item2, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array
 					inventory[3][column] = warehouse.getTempAmt1();
@@ -414,7 +353,7 @@ public class Test {
 					int item3 = 2;
 					int requiredAmount = temp3;
 					requiredAmount =+ warehouse.getTempAmt3();
-					stockResult = findItems(inventory, item3, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item3, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					inventory[3][column] = warehouse.getTempAmt1();
 					column++;
@@ -431,18 +370,7 @@ public class Test {
 				inventory[3][column] = warehouse.getTempAmt3();
 			}
 			
-		} else if(city == 5) {				// CHICAGO
- 			
-			inout.seek(amt_1_Index);
-			inout.read(column1);
-			String amt1 = new String(column1);
-			inout.seek(amt_2_Index);
-			inout.read(column2);
-			String amt2 = new String(column2);
-			inout.seek(amt_3_Index);
-			inout.read(column3);
-			String amt3 = new String(column3);
-			
+		} else if(city == 4) {				// CHICAGO
 			// Get current amount in warehouse
 			warehouse.setCurrentAmt1(inventory[4][0]);
 			warehouse.setCurrentAmt2(inventory[4][1]);
@@ -472,7 +400,7 @@ public class Test {
 					int item1 = 0;
 					int requiredAmount = temp1;
 					requiredAmount =+ warehouse.getTempAmt1();
-					stockResult = findItems(inventory, item1, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item1, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array  
 					// If there multiple AMT's that need to be check I added a conditional
@@ -496,7 +424,7 @@ public class Test {
 					int item2 = 1;
 					int requiredAmount = temp2;
 					requiredAmount =+ warehouse.getTempAmt2();
-					stockResult = findItems(inventory, item2, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item2, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 					// Update amounts add to array
 						if(change == true) {
@@ -517,7 +445,7 @@ public class Test {
 					int item3 = 2;
 					int requiredAmount = temp3;
 					requiredAmount =+ warehouse.getTempAmt3();
-					stockResult = findItems(inventory, item3, requiredAmount);
+					stockResult = findItems(warehouse, inventory, item3, requiredAmount, city);
 					// Calculate the difference between largest item amount and warehouse stock
 						if(change = true) {
 							inventory[4][2] += stockResult;
@@ -541,6 +469,10 @@ public class Test {
 			}
 			
 		}
+
+		// Print card -- Ship or Order
+		printCard(typeByte, cityArray, city, amt1, amt2, amt3);	
+		
 		// Increase file pointer to next line
 		type_Index += 14;
 		cityIndex += 14;
@@ -548,6 +480,11 @@ public class Test {
 		amt_2_Index += 14;
 		amt_3_Index += 14;
 		inout.close();
+	}
+	
+	public static void printCard(String typeByte, String cityArray[], int city, String amt1, String amt2, String amt3) {
+		//System.out.println(typeByte + " " + cityArray[city] + " " + amt1.replaceFirst("0", "") + " " + amt2 + " " + amt3); 
+		System.out.printf("%-3s %-12s %s %s %s\n\n" , typeByte ,cityArray[city], amt1.replaceFirst("0", ""), amt2, amt3); 
 	}
 	
 	/* printArray: Print array contents */
@@ -569,7 +506,7 @@ public class Test {
 		}
 	}
 	
-	public static int findItems(int array[][], int item, int requiredAmount) {
+	public static int findItems(Inventory warehouse, int array[][], int item, int requiredAmount, int city) {
 		int max = 0;
 		int k = 0;
 		// Find largest value in column
@@ -588,8 +525,13 @@ public class Test {
 			// Update warehouse where max is found 
 			array[k][item] = array[k][item] + requiredAmount;
 			change = true;
+			System.out.println("\n" + Math.abs(requiredAmount) + " of item " + item + " shipped from "
+					 +  cityArray[k]  + " to " + cityArray[city]);
+			System.out.printf("Price of order: $%.2f \n", warehouse.orderPrice(Math.abs(requiredAmount), item));
+			
 			return Math.abs(requiredAmount);
 		} else {
+			System.out.println(cityArray[city] + " order unfilled for item # " + item);
 			change = false;
 		}
 		return max;
