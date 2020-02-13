@@ -69,7 +69,10 @@ public class Test {
 		String amt2 = new String(column2);
 		inout.seek(amt_3_Index);
 		inout.read(column3);
-		String amt3 = new String(column3);		
+		String amt3 = new String(column3);	
+		
+		// Print card -- Ship or Order
+		printCard(typeByte, cityArray, city, amt1, amt2, amt3);	
 	
 		if(city == 0) {					// NEW YORK
 			// Get current amount in warehouse
@@ -109,6 +112,8 @@ public class Test {
 					inventory[0][column] = warehouse.getTempAmt2();
 					column++;
 					inventory[0][column] = warehouse.getTempAmt3();
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				} 
 				
 				if(warehouse.getTempAmt2() < 0) {
@@ -124,6 +129,8 @@ public class Test {
 					inventory[0][column] += stockResult;
 					column++;
 					inventory[0][column] = warehouse.getTempAmt3();
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				} 
 				
 				if(warehouse.getTempAmt3() < 0) {
@@ -137,6 +144,8 @@ public class Test {
 					inventory[0][column] = warehouse.getTempAmt2();
 					column++;
 					inventory[0][column] += stockResult;
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				}
 			} else {
 				// Update amounts add to array  
@@ -145,6 +154,8 @@ public class Test {
 				inventory[0][column] = warehouse.getTempAmt2();
 				column++;
 				inventory[0][column] = warehouse.getTempAmt3();
+				// Current inventory totals -- METHOD -- send array, item
+				currentInventory(cityArray, city, inventory);
 			}
 			
 		} else if(city == 1) {				// MIAMI	
@@ -184,6 +195,8 @@ public class Test {
 					inventory[1][column] = warehouse.getTempAmt2();
 					column++;
 					inventory[1][column] = warehouse.getTempAmt3();
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				} 
 				
 				if(warehouse.getTempAmt2() < 0) {
@@ -198,6 +211,8 @@ public class Test {
 					inventory[1][column] =+ stockResult;
 					column++;
 					inventory[1][column] = warehouse.getTempAmt3();
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				} 
 				
 				if(warehouse.getTempAmt3() < 0) {
@@ -211,6 +226,8 @@ public class Test {
 					inventory[1][column] = warehouse.getTempAmt2();
 					column++;
 					inventory[1][column] =+ stockResult;
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				}
 			} else {
 				// Update amounts add to array  
@@ -219,6 +236,8 @@ public class Test {
 				inventory[1][column] = warehouse.getTempAmt2();
 				column++;
 				inventory[1][column] = warehouse.getTempAmt3();
+				// Current inventory totals -- METHOD -- send array, item
+				currentInventory(cityArray, city, inventory);
 			}
 			
 		} else if(city == 2) {				// LOS ANGELES					
@@ -258,6 +277,8 @@ public class Test {
 					inventory[2][column] = warehouse.getTempAmt2();
 					column++;
 					inventory[2][column] = warehouse.getTempAmt3();
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				} 
 				
 				if(warehouse.getTempAmt2() < 0) {
@@ -272,6 +293,8 @@ public class Test {
 					inventory[2][column] =+ stockResult;
 					column++;
 					inventory[2][column] = warehouse.getTempAmt3();
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				} 
 				
 				if(warehouse.getTempAmt3() < 0) {
@@ -285,6 +308,8 @@ public class Test {
 					inventory[0][column] = warehouse.getTempAmt2();
 					column++;
 					inventory[0][column] += stockResult;
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				}
 			} else {
 				// Update amounts add to array  
@@ -293,6 +318,8 @@ public class Test {
 				inventory[2][column] = warehouse.getTempAmt2();
 				column++;
 				inventory[2][column] = warehouse.getTempAmt3();
+				// Current inventory totals -- METHOD -- send array, item
+				currentInventory(cityArray, city, inventory);
 			}
 
 		} else if(city == 3) { 					// HOUSTON	
@@ -333,6 +360,8 @@ public class Test {
 					inventory[3][column] = warehouse.getTempAmt2();
 					column++;
 					inventory[3][column] = warehouse.getTempAmt3();
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				} 
 				
 				if(warehouse.getTempAmt2() < 0) {
@@ -347,6 +376,8 @@ public class Test {
 					inventory[3][column] += stockResult;
 					column++;
 					inventory[3][column] = warehouse.getTempAmt3();
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				} 
 				
 				if(warehouse.getTempAmt3() < 0) {
@@ -360,6 +391,8 @@ public class Test {
 					inventory[3][column] = warehouse.getTempAmt2();
 					column++;
 					inventory[3][column] += stockResult;
+					// Current inventory totals -- METHOD -- send array, item
+					currentInventory(cityArray, city, inventory);
 				}
 			} else {
 				// Update amounts add to array  
@@ -368,6 +401,8 @@ public class Test {
 				inventory[3][column] = warehouse.getTempAmt2();
 				column++;
 				inventory[3][column] = warehouse.getTempAmt3();
+				// Current inventory totals -- METHOD -- send array, item
+				currentInventory(cityArray, city, inventory);
 			}
 			
 		} else if(city == 4) {				// CHICAGO
@@ -417,6 +452,8 @@ public class Test {
 						column++;
 						inventory[4][column] = warehouse.getTempAmt3();
 						column = 0;
+						// Current inventory totals -- METHOD -- send array, item
+						currentInventory(cityArray, city, inventory);
 					}
 				} 
 			 	
@@ -438,6 +475,8 @@ public class Test {
 							column++;
 							inventory[4][column] = warehouse.getTempAmt3();
 							column = 0;	
+							// Current inventory totals -- METHOD -- send array, item
+							currentInventory(cityArray, city, inventory);
 						}		
 				}
 				
@@ -457,6 +496,8 @@ public class Test {
 							column++;
 							inventory[4][column] += stockResult;
 							column = 0;
+							// Current inventory totals -- METHOD -- send array, item
+							currentInventory(cityArray, city, inventory);
 						}
 				}
 			} else {
@@ -466,13 +507,12 @@ public class Test {
 				inventory[4][column] = warehouse.getTempAmt2();
 				column++;
 				inventory[4][column] = warehouse.getTempAmt3();
+				// Current inventory totals -- METHOD -- send array, item
+				currentInventory(cityArray, city, inventory); 
 			}
 			
 		}
 
-		// Print card -- Ship or Order
-		printCard(typeByte, cityArray, city, amt1, amt2, amt3);	
-		
 		// Increase file pointer to next line
 		type_Index += 14;
 		cityIndex += 14;
@@ -482,9 +522,15 @@ public class Test {
 		inout.close();
 	}
 	
+	public static void currentInventory(String cityArray[], int city, int inventory[][]) {
+		System.out.printf("Current inventory for %s: %d %d %d \n\n", cityArray[city], 
+				inventory[city][0], inventory[city][1], inventory[city][2]);
+		
+	}
+	
 	public static void printCard(String typeByte, String cityArray[], int city, String amt1, String amt2, String amt3) {
 		//System.out.println(typeByte + " " + cityArray[city] + " " + amt1.replaceFirst("0", "") + " " + amt2 + " " + amt3); 
-		System.out.printf("%-3s %-12s %s %s %s\n\n" , typeByte ,cityArray[city], amt1.replaceFirst("0", ""), amt2, amt3); 
+		System.out.printf("%-3s %-12s %s %s %s\n" , typeByte ,cityArray[city], amt1.replaceFirst("0", ""), amt2, amt3); 
 	}
 	
 	/* printArray: Print array contents */
@@ -527,7 +573,8 @@ public class Test {
 			change = true;
 			System.out.println("\n" + Math.abs(requiredAmount) + " of item " + item + " shipped from "
 					 +  cityArray[k]  + " to " + cityArray[city]);
-			System.out.printf("Price of order: $%.2f \n", warehouse.orderPrice(Math.abs(requiredAmount), item));
+			System.out.printf("Price of order: $%8.2f \n", warehouse.orderPrice(Math.abs(requiredAmount), item));
+		//	System.out.printf("%s %13d %d %d \n", cityArray[k], array[k][0], array[k][1], array[k][2]);
 			
 			return Math.abs(requiredAmount);
 		} else {
