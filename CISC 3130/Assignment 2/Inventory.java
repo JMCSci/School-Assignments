@@ -4,17 +4,16 @@ public class Inventory {
 	final double p1 = 2.00;
 	final double p2 = 7.00;
 	final double p3 = 8.50;
-	
 	int currentAmt1 = 0;
 	int currentAmt2 = 0;
 	int currentAmt3 = 0;
-	
 	int tempAmt1 = 0;
 	int tempAmt2 = 0;
 	int tempAmt3 = 0;
 	
-	String type = "";
+	double finalPrice = 0;
 	
+	String type = "";
 	
 	Inventory() {
 		
@@ -33,7 +32,17 @@ public class Inventory {
 			tempAmt3 = currentAmt3 - tempAmt3;
 		}
 		
-		
+	}
+	
+	public double orderPrice(int requiredAmount, int item) {
+		if(item == 0) {
+			finalPrice = requiredAmount * p1;
+		} else if(item == 1) {
+			finalPrice = requiredAmount * p2;
+		} else if(item == 2) {
+			finalPrice = requiredAmount * p3;
+		}
+		return finalPrice;
 	}
 	
 	public void setTempAmt1(int newValue) {
@@ -80,10 +89,9 @@ public class Inventory {
 	public String getType() {
 		return type;
 	}
-
-
-
-
 	
+	public double getFinalPrice() {
+		return finalPrice;
+	}
 
 }
