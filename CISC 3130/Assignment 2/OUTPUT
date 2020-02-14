@@ -1,15 +1,15 @@
 
-S   New York                   023 14 01
+S   New York                    23 14 01
 New York inventory:             23 14 1 
 
 
 
-S   Miami                      025 25 25
+S   Miami                       25 25 25
 Miami inventory:                25 25 25 
 
 
 
-S   Los Angeles                040 13 17
+S   Los Angeles                 40 13 17
 Los Angeles inventory:          40 13 17 
 
 
@@ -19,76 +19,76 @@ Houston inventory:             100 30 10
 
 
 
-S   Chicago                    042 23 19
+S   Chicago                     42 23 19
 Chicago inventory:              42 23 19 
 
 
 
-S   New York                   000 00 15
+S   New York                    00 00 15
 New York inventory:             23 14 16 
 
 
 
-S   Miami                      013 17 21
+S   Miami                       13 17 21
 Miami inventory:                38 42 46 
 
 
-O   Los Angeles                015 10 15
+O   Los Angeles                 15 10 15
 Price of order:                $227.50
 Los Angeles inventory:          25 3 2 
 
 
-O   New York                   012 24 08
+O   New York                    12 24 08
 10 of item 1 shipped from Miami to New York
 Price of order:                 $77.00 
 New York inventory:             11 24 8 
 
 
-O   Houston                    075 45 10
+O   Houston                     75 45 10
 15 of item 1 shipped from Miami to Houston
 Price of order:                 $115.50 
 Houston inventory:              25 45 0 
 
 
-O   Chicago                    020 15 15
+O   Chicago                     20 15 15
 Price of order:                 $272.50
 Chicago inventory:              22 8 4 
 
 
-O   New York                   015 00 00
+O   New York                    15 00 00
 4 of item 0 shipped from Miami to New York
 Price of order:                 $8.80 
 New York inventory:             15 24 8 
 
 
 
-S   Los Angeles                010 20 10
+S   Los Angeles                 10 20 10
 Los Angeles inventory:          35 23 12 
 
 
 
-S   Houston                    000 30 40
+S   Houston                     00 30 40
 Houston inventory:              25 75 40 
 
 
-O   New York                   015 15 25
+O   New York                    15 15 25
 17 of item 2 shipped from Miami to New York
 Price of order:                 $158.95 
 New York inventory:              0 9 25 
 
 
-O   Chicago                    075 30 40
+O   Chicago                     75 30 40
 Chicago order unfilled for item # 0
 22 of item 1 shipped from Houston to Chicago
 Price of order:                 $169.40 
 36 of item 2 shipped from Houston to Chicago
 Price of order:                 $336.60 
 
-S   New York                   020 15 20
+S   New York                    20 15 20
 New York inventory:             20 24 45 
 
 
-O   Houston                    010 20 10
+O   Houston                     10 20 10
 6 of item 2 shipped from New York to Houston
 Price of order:                 $56.10 
 Houston inventory:              15 33 10 
