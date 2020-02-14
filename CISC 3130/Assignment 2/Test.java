@@ -489,12 +489,9 @@ public class Test {
 		}else if (city == 0){
 			System.out.printf("%-3s inventory: %14d %d %d \n\n\n", cityArray[city], 
 					inventory[city][0], inventory[city][1], inventory[city][2]);
-		} else if (city == 3){
+		} else if (city == 3 || city == 4) {
 			System.out.printf("%-3s inventory: %15d %d %d \n\n\n", cityArray[city], 
 					inventory[city][0], inventory[city][1], inventory[city][2]);
-		}else if(city == 4) {
-				System.out.printf("%s inventory: %15d %d %d \n\n\n", cityArray[city], 
-					inventory[city][0], inventory[city][1], inventory[city][2]);	
 		} else {
 			System.out.printf("%-3s inventory: %14d %d %d \n\n\n", cityArray[city], 
 					inventory[city][0], inventory[city][1], inventory[city][2]);
@@ -504,9 +501,9 @@ public class Test {
 	 
 	public static void printCard(String typeByte, String cityArray[], int city, String amt1, String amt2, String amt3) { 
 		if(typeByte.matches("O")) {
-			System.out.printf("%-3s %-14s %15s %s %s\n" , typeByte ,cityArray[city], amt1.replaceFirst("#0", ""), amt2, amt3);
+			System.out.printf("%-3s %-14s %15s %s %s\n" , typeByte ,cityArray[city], amt1.replaceFirst("0", ""), amt2, amt3);
 		} else {
-			System.out.printf("\n%-3s %-14s %15s %s %s\n" , typeByte ,cityArray[city], amt1.replaceFirst("#0", ""), amt2, amt3);
+			System.out.printf("\n%-3s %-14s %15s %s %s\n" , typeByte ,cityArray[city], amt1.replaceFirst("^0", ""), amt2, amt3);
 		}
 		 
 	}
