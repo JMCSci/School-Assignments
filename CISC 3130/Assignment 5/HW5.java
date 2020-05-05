@@ -43,7 +43,11 @@ public class HW5 {
 
 //		tree.getTotalChildren("Bob");
 //		tree.getSiblings("Bill");
-		tree.getChildren("Bob");
+//		tree.getChildren("Bob");
+//		tree.getUncles("Jones");
+//		tree.getGrandfather("Bob");
+//		tree.youngestSon("Bob");
+		tree.youngestSibling("Jones");
 
 		
 		 
