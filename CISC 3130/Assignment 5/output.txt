@@ -1,0 +1,83 @@
+   *** Data for Tree1 ***
+Child: Bob	Parent: Jones
+Child: Dan	Parent: Jones
+Child: Brian	Parent: Jones
+Child: Richard	Parent: Bob
+Child: Jake	Parent: Bob
+Child: Bill	Parent: Jake
+Child: Michael	Parent: Brian
+Child: Deville	Parent: Michael
+
+   *** Data for Tree2 ***
+Child: Laura	Parent: Thomas
+Child: Scott	Parent: Laura
+Child: Jane	Parent: Scott
+Child: Phillip	Parent: Jane
+Child: Mabel	Parent: Jane
+Child: Billy	Parent: Mabel
+
+   *** Data for Tree3 ***
+Child: Tara	Parent: Lisa
+Child: Ted	Parent: Lisa
+Child: Larry	Parent: Tara
+Child: Kelly	Parent: Ted
+Child: John	Parent: Kelly
+Child: Sidney	Parent: Kelly
+Child: Albert	Parent: Kelly
+
+   *** Data for Tree4 ***
+Child: Noah	Parent: Emma
+Child: William	Parent: Emma
+Child: James	Parent: Noah
+Child: Isabel	Parent: Noah
+Child: Ava	Parent: William
+Child: Tony	Parent: William
+Child: Sofia	Parent: Isabel
+Child: Harper	Parent: Ava
+
+   *** Data for Tree5 ***
+Child: Alden	Parent: Jackson
+Child: Scarlett	Parent: Jackson
+Child: Aria	Parent: Jackson
+Child: Sebastian	Parent: Alden
+Child: Matthew	Parent: Scarlett
+Child: Luke	Parent: Aria
+Child: Gabe	Parent: Sebastian
+Child: Dylan	Parent: Sebastian
+Child: Julian	Parent: Sebastian
+Child: Issac	Parent: Matthew
+Child: Lillian	Parent: Matthew
+
+*** TREE 1 *** 
+Parent of Dan: Jones
+Uncles of Jake: Dan, Brian
+Oldest child of Jones: Bob
+Youngest child of Jones: Brian
+Children of Deville: No children
+
+*** TREE 2 *** 
+Grandparent of Scott: Thomas
+Siblings of Phillip: Mabel
+
+Children of Mabel: Billy
+Children of Jane: Phillip, Mabel
+Parent of Jane: Scott
+
+*** TREE 3 *** 
+Children of Kelly: John, Sidney, Albert
+Grandparent of Kelly: Lisa
+Oldest sibling of Sidney: John
+
+*** TREE 4 *** 
+Uncles of Isabel: William
+Grandparent of Harper: William
+Sibling of Harper: * No siblings * 
+Oldest son of Noah: James
+
+*** TREE 5 *** 
+Youngest child of Matthew: Lillian
+Oldest child of Sebastian: Issac
+Uncles of Dylan: * No uncles * 
+Uncles of Sebastian: Scarlett, Aria
+Grandparent of Sebastian: Jackson
+Uncles of Luke: Alden, Scarlett
