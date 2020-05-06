@@ -1,0 +1,60 @@
+Quantity: 150, Price: $1.00
+
+Quantity: 130, Price: $2.00
+
+145 at $1.00 each -- Sales: $188.50
+Quantity: 50, Price: $2.50
+
+5 at $1.00 each -- Sales: $6.50 
+Remainder of 70.0 widgets not available
+
+130 at $2.00 each -- Sales: $338.00 
+Remainder of 50.0 widgets not available
+
+Quantity: 50, Price: $4.00
+
+Quantity: 30, Price: $5.00
+
+Quantity: 40, Price: $5.50
+
+Discount: 30.0% off next two purchases
+
+50 at $2.50 each -- Sales: $113.75
+30 at $4.00 each -- Sales: $109.20
+Quantity: 50, Price: $6.00
+
+Quantity: 265, Price: $10.00
+
+20 at $4.00 each -- Sales: $104.00 
+Remainder of 40.0 widgets not available
+
+Discount: 50.0% off next two purchases
+
+30 at $5.00 each -- Sales: $97.50 
+Remainder of 70 widgets not available
+
+40 at $5.50 each -- Sales: $143.00 
+Remainder of 30 widgets not available
+
+50 at $6.00 each -- Sales: $390.00 
+Remainder of 125.0 widgets not available
+
+Quantity: 40, Price: $14.00
+
+Quantity: 75, Price: $15.00
+
+110 at $10.00 each -- Sales: $1430.00
+Quantity: 30, Price: $16.00
+
+Quantity: 40, Price: $18.00
+
+### FINAL TOTAL ###
+610 Widgets sold 
+Total Sales: $2920.45 
+
+### REMAINING INVENTORY ###
+Quantity: 155, Price: $10.00
+Quantity: 40, Price: $14.00
+Quantity: 75, Price: $15.00
+Quantity: 30, Price: $16.00
+Quantity: 40, Price: $18.00
