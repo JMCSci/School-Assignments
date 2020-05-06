@@ -1,3 +1,5 @@
+/* Node class */
+
 package assignment5;
 
 import java.util.ArrayList;
@@ -41,7 +43,6 @@ public class Node {
 			}
 			index++;
 		}
-		
 		// searching tree index is greater than the size of parents array
 		// means parent is not in tree
 		if(index > parents.size() - 1) {
@@ -63,31 +64,31 @@ public class Node {
 		return true;
 	}
 	
-	// updateSiblings: (WORKS) -- Updates all children siblings lists
+	// updateSiblings: Updates all children siblings lists after node creation
 	void updateSiblings(Node parentNode, Node newNode) { 
-				int size = parentNode.children.size();
-					Node parentChild = null;
-					Node temp = null;
-					for(int i = 0; i < size; i++) {
-						// walks through list -- sets variable to children nodes
-						parentChild = parentNode.children.get(i);
-						// walks through entire list -- adds siblings that are not in list already 
-						for(int j = 0; j < size; j++) { 
-							temp = parentNode.children.get(j);
-							// child name does not equal sibling name
-							if(temp.name != parentChild.name) {
-								// make sure name is not already on the list -- if not, add it
-								if(!parentChild.siblings.contains(temp)) {
-									parentChild.siblings.addLast(temp);
-								}
-							} 
+		int size = parentNode.children.size();
+		Node parentChild = null;
+		Node temp = null;
+			for(int i = 0; i < size; i++) {
+			// walks through list -- sets variable to children nodes
+				parentChild = parentNode.children.get(i);
+			// walks through entire list -- adds siblings that are not in list already 
+				for(int j = 0; j < size; j++) { 
+					temp = parentNode.children.get(j);
+			// child name does not equal sibling name
+					if(temp.name != parentChild.name) {
+			// make sure name is not already on the list -- if not, add it
+						if(!parentChild.siblings.contains(temp)) {
+							parentChild.siblings.addLast(temp);
 						}
-					}
-					
+					} 
 				}
+			}
+					
+		}
 	
 	
-		// getSibling: (WORKS) -- Gets siblings of child
+		// siblings: Prints siblings of child node
 		void getSibling(String child) throws Exception {
 			int index = 0;
 			// get parent of child
@@ -115,7 +116,7 @@ public class Node {
 			
 			// if sibling list is empty 
 			if(parentOfChild.children.get(index).siblings.isEmpty()) {
-				System.out.println("No siblings");
+				System.out.println("* No siblings * ");
 			} else {
 				Iterator <Node> nodeSiblings = parentOfChild.children.get(index).siblings.listIterator();
 				while(nodeSiblings.hasNext()) {
@@ -128,17 +129,15 @@ public class Node {
 			}
 		}
 
-	// getRoot: (WORKS) -- Prints root node of tree
-	void getRoot() {
-		System.out.println(root.name);
+	// getRoot: Prints root node of tree
+	Node getRoot() {
+		return root;
 	}
 	
-	// getParent: (WORKS) -- Returns parent of child
+	// getParent: Returns parent of child
 	Node getParent(String child) {
 		Iterator <Node> parent = parents.iterator();
 		Node parentOfChild = null;
-		Node node = null;
-		Node childNode = null;
 		int index = 0;
 		
 		Node temp = null;			// holds parent node
@@ -160,14 +159,38 @@ public class Node {
 			System.out.println("Node does not have a parent.");
 			return null;
 		}
-		
-	
-		
-//		System.out.println(parentOfChild.name);
 		return parentOfChild;
 	}
 	
-	// getTotalChildren: (WORKS)
+	// parentName: Prints name of parent node
+	void getParentName(String child) {
+		Iterator <Node> parent = parents.iterator();
+		Node parentOfChild = null;
+		int index = 0;
+		// holds parent node
+		Node temp = null; 	
+		// go through parents -- find parent
+		for(int i = 0; i < parents.size(); i++) {
+			temp = parents.get(i);
+			index = i;
+			for(int j = 0; j < temp.children.size(); j++) {
+				// go through parents childrens list to find match of child name
+				if(temp.children.get(j).name.matches(child)) {
+					parentOfChild = temp;
+					break;
+				}
+			}
+		}
+		
+		// root doesnt have a parent
+		if(parentOfChild == null) {
+			System.out.println("Node does not have a parent.");
+			return;
+		}
+		System.out.println(parentOfChild.name);
+	}
+	
+	// getTotalChildren: Returns the number of children of the parent node
 	int getTotalChildren(String nodeName) throws Exception {
 		// find parent
 		Iterator <Node> parent = parents.iterator();
@@ -178,7 +201,8 @@ public class Node {
 			if(parent.next().name == nodeName) {
 				break; 
 			} 
-			index++;			// find index in array
+			// find index in array
+			index++;			
 		}
 			
 		node = parents.get(index);
@@ -186,9 +210,8 @@ public class Node {
 		return node.numberOfChildren;		
 	}
 
-	
-	
-	// getChildren: (WORKS) -- Gets children of parent node
+
+	// getChildren: Returns children of parent node
 	LinkedList <Node> getChildrenList(String nameNode) {
 		// find parent
 		Iterator <Node> parent = parents.iterator();
@@ -199,7 +222,8 @@ public class Node {
 			if(parent.next().name.matches(nameNode)) {
 				break;
 			} 
-			index++;			// index in array
+			// index in array
+			index++;			
 		}
 		node = parents.get(index);
 		Iterator <Node> nodeChild= node.children.iterator();
@@ -209,48 +233,34 @@ public class Node {
 		if(nodeChild.hasNext() == false) {
 			System.out.println("No children");
 		}
-//		} else {
-//			while(nodeChild.hasNext()) {
-//				System.out.println(nodeChild.next());
-//			}
-//		}
-		
-		
-		// Print all uncles
-
-//				while(nodeChild.hasNext()) {
-//					System.out.print(nodeChild.next());
-//					if(nodeChild.hasNext()) {
-//						System.out.print(", ");
-//					}
-//				}
-//				System.out.println("\n");
-			
-//		
+	
 		return node.children;
 	}
 	
-	void getChildren(String nameNode) {
+	// children: Prints the children of the parent node
+	void children(String nameNode) {
 		// find parent
-				Iterator <Node> parent = parents.iterator();
-				Node node = null;
-				int index = 0;
-				// go through parents
-				while(parent.hasNext()) {
-					if(parent.next().name.matches(nameNode)) {
-						break;
-					} 
-					index++;			// index in array
-				}
-				node = parents.get(index);
-				Iterator <Node> nodeChild= node.children.iterator();
+		Iterator <Node> parent = parents.iterator();
+		Node node = null;
+		int index = 0;
+		// go through parents
+		while(parent.hasNext()) {
+			if(parent.next().name.matches(nameNode)) {
+				break;
+			} 
+			// index in array
+			index++;			
+		}
+		node = parents.get(index);
+		Iterator <Node> nodeChild= node.children.iterator();
 
 				
-				// Print children
-				if(nodeChild.hasNext() == false) {
-					System.out.println("No children");
-				}
-		
+		// Print children
+		// No children in list
+		if(nodeChild.hasNext() == false) {
+				System.out.println("No children");
+		}
+		// Children in list
 		Iterator <Node> nodeChildren = node.children.listIterator();
 		while(nodeChildren.hasNext()) {
 			System.out.print(nodeChildren.next());
@@ -260,10 +270,8 @@ public class Node {
 		}
 	}
 	
-	
-	
-	
-	void getUncles(String nameNode) {
+	// uncles: Prints uncles of child node
+	void uncles(String nameNode) {
 		Node parentOfChild = null;
 		LinkedList <Node> uncles = new LinkedList<>();
 		parentOfChild = getParent(nameNode);
@@ -283,7 +291,7 @@ public class Node {
 		
 		// uncles will be sibling of parent
 		if(uncles.isEmpty()) {
-			System.out.println("Child has no uncles.");
+			System.out.println("* No uncles * ");
 			return;
 		}
 		
@@ -295,15 +303,14 @@ public class Node {
 				System.out.print(", ");
 			}
 		}
-		System.out.println("\n");
-	
 	}
 	
-	void getGrandparent(String nameNode) {
+	// grandparent: Prints the name of the grandparent
+	void grandparent(String nameNode) {
 		// get parent node
 		// get parents parent node
 		Node parentOfChild = getParent(nameNode);
-		Node parentOfParent = getParent(parentOfChild.name);		// **** NULL POINTER EXCEPTION
+		Node parentOfParent = getParent(parentOfChild.name);
 		
 		// this is the root node -- no parents
 		if(parentOfChild == null || parentOfParent == null) {
@@ -311,49 +318,49 @@ public class Node {
 			System.out.println("Child does not have grandparent.");
 			return;
 		}
-
 		System.out.println(parentOfParent.name);
 	}
 	
+	// youngestSon: Prints the name of the youngest son
 	void youngestSon(String nameNode) {
 		LinkedList<Node> childList = getChildrenList(nameNode);
 		if(childList.isEmpty()) {
-			System.out.println("No sons");
+			System.out.println("* No sons * ");
 			return;
 		}
 		System.out.println(childList.getLast());
 	}
 	
+	// oldestSon: Prints the name of the oldest son
 	void oldestSon(String nameNode) {
 		LinkedList<Node> childList = getChildrenList(nameNode);
 		if(childList.isEmpty()) {
-			System.out.println("No sons");
+			System.out.println("* No sons *");
 			return;
 		}
 		System.out.println(childList.getFirst());
 	}
 	
+	// oldestSibling: Prints the name of the oldest sibling
 	void oldestSibling(String nameNode) {
 		Node parentOfChild = getParent(nameNode);
 		Node oldestChild; 
 		oldestChild = parentOfChild.children.getFirst();
 		
 		if(parentOfChild.children.size() == 1) {
-			System.out.println("Node is an only child.");
+			System.out.println("* Only child * ");
 			return;
 		}
 		
-		
 		if(nameNode.matches(oldestChild.name)) {
-			System.out.println("This node is the oldest sibling.");
+			System.out.println("This member is the oldest sibling.");
 			return;
 		}
 		
 		System.out.println(oldestChild.name);
-
 	}
 	
-	
+	// youngestSibling: Prints the name of the youngest sibling
 	void youngestSibling(String nameNode) {
 		// root node
 		if(getParent(nameNode) == null) {
@@ -372,12 +379,11 @@ public class Node {
 		
 		
 		if(nameNode.matches(oldestChild.name)) {
-			System.out.println("This node is the youngest sibling.");
+			System.out.println("This member is the youngest sibling.");
 			return;
 		}
 		
 		System.out.println(oldestChild.name);
-
 	}
 	
 	@Override
@@ -386,5 +392,4 @@ public class Node {
 	}
 	
 	
-
 }
